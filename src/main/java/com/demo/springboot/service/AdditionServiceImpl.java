@@ -18,6 +18,7 @@ public class AdditionServiceImpl implements AdditionService{
         int addition = 0;
         if (additionRequest.getA() >= 0 && additionRequest.getB() >=0) {
              addition = additionRequest.getA() + additionRequest.getB();
+            addition = additionRequest.getA() + additionRequest.getB();
         }
         additionRepoModel.setAddition(addition);
         additionRepo.save(additionRepoModel);
