@@ -1,10 +1,10 @@
-package com.demo.SpringBoot.service;
+package com.demo.springboot.service;
 
-import com.demo.SpringBoot.model.AdditionRepoModel;
-import com.demo.SpringBoot.model.AdditionRequest;
+import com.demo.springboot.model.AdditionRepoModel;
+import com.demo.springboot.model.AdditionRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.demo.SpringBoot.repository.AdditionRepo;
+import com.demo.springboot.repository.AdditionRepo;
 
 @Service
 public class AdditionServiceImpl implements AdditionService{
@@ -18,6 +18,7 @@ public class AdditionServiceImpl implements AdditionService{
         int addition = 0;
         if (additionRequest.getA() >= 0 && additionRequest.getB() >=0) {
              addition = additionRequest.getA() + additionRequest.getB();
+            addition = additionRequest.getA() + additionRequest.getB();
         }
         additionRepoModel.setAddition(addition);
         additionRepo.save(additionRepoModel);
