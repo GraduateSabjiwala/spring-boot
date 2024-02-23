@@ -1,4 +1,4 @@
-package com.demo.SpringBoot.model;
+package com.demo.springboot.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
-package com.demo.SpringBoot.repository;
+package com.demo.springboot.repository;
 
-import com.demo.SpringBoot.model.AdditionRepoModel;
+import com.demo.springboot.model.AdditionRepoModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
