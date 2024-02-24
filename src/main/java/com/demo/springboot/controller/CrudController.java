@@ -16,11 +16,17 @@ public class CrudController {
     @Autowired
     EmployeeService employeeService;
 
-    @PostMapping("/add-employee")
+    @PostMapping("/add-employee") // save
     public Employee saveEmployee(@RequestBody Employee employee) {
         log.info("Inside saveEmployee");
         return employeeService.addEmployee(employee);
     }
+
+
+
+
+    // Save --> Update --> Get --> Delete --> basic
+    // External API -> Integrate
 
 
 }
