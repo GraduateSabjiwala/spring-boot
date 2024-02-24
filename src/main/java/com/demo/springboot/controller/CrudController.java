@@ -6,6 +6,7 @@ import com.demo.springboot.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,8 +23,11 @@ public class CrudController {
         return employeeService.addEmployee(employee);
     }
 
-
-
+    @PutMapping("/update-employee")
+    public Object updateEmployee(@RequestBody Employee employee) {
+        log.info("Inside updateEmployee");
+        return employeeService.updateEmployee(employee);
+    }
 
     // Save --> Update --> Get --> Delete --> basic
     // External API -> Integrate

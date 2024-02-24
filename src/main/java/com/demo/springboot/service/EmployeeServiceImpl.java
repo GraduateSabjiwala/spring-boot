@@ -28,7 +28,23 @@ public class EmployeeServiceImpl implements EmployeeService {
                 log.error("Null request / Required data not found");
             }
         } catch (Exception e) {
-            log.error("Exception occured while saving employee with probable cause {} ",e.getMessage());
+            log.error("Exception occurred while saving employee with probable cause {} ", e.getMessage());
+            throw new RuntimeException(e);
+        }
+        return employee1;
+    }
+
+    @Override
+    public Object updateEmployee(Employee employee) {
+        Object employee1 = new Object();
+        try {
+           if (employee.getEmpId() != null){
+               employee1= employeeRepo.updateEmployee(employee);
+           }else {
+               log.error("Null employeeId");
+           }
+        } catch (Exception e) {
+            log.error("Exception occurred while updating employee with probable cause {} ", e.getMessage());
             throw new RuntimeException(e);
         }
         return employee1;

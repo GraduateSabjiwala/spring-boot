@@ -4,4 +4,6 @@ import com.demo.springboot.model.Employee;
 
 public interface EmployeeRepo {
     Employee addEmployee(Employee employee);
+
+    Object updateEmployee(Employee employee);
 }
