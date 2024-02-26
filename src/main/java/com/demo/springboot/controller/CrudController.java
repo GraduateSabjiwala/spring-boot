@@ -39,7 +39,7 @@ public class CrudController {
     }
     // Save --> Update --> Get --> Delete --> basic
     // External API -> Integrate --> External --> cloud remote --> url --> request format --> response format
-    // Response --> CallBack API -->
+    // Response --> CallBack API --> waitTime
 
 
 }
