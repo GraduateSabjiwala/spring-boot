@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -48,6 +49,34 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new RuntimeException(e);
         }
         return employee1;
+    }
+
+    @Override
+    public List<Employee> getAllEmp() {
+        log.info("Inside getAllEmp");
+        List<Employee> employees ;
+        try{
+            employees = employeeRepo.getEmployees();
+
+        } catch (Exception e) {
+            log.error("Exception occurred while get employees with probable cause {} ", e.getMessage());
+            throw new RuntimeException(e);
+        }
+        return employees;
+    }
+
+    @Override
+    public List<Employee> getEmpById(String empId) {
+        List<Employee> employee = null;
+        try{
+            if (!empId.isEmpty()){
+              employee =  employeeRepo.getEmpById(empId);
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return employee;
     }
 
     public static String generateEmpId(String name, String boundValue) {
