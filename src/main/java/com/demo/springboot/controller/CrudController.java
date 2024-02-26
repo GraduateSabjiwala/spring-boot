@@ -5,10 +5,9 @@ import com.demo.springboot.model.Employee;
 import com.demo.springboot.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -29,8 +28,18 @@ public class CrudController {
         return employeeService.updateEmployee(employee);
     }
 
+    @GetMapping("/get-all-emp")
+    public List<Employee> getAllEmp(){
+        return employeeService.getAllEmp();
+    }
+
+    @GetMapping("/get-by-id/{empId}")
+    public List<Employee> getById(@PathVariable String empId){
+        return employeeService.getEmpById(empId);
+    }
     // Save --> Update --> Get --> Delete --> basic
-    // External API -> Integrate
+    // External API -> Integrate --> External --> cloud remote --> url --> request format --> response format
+    // Response --> CallBack API -->
 
 
 }

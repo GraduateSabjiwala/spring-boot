@@ -9,6 +9,9 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
+import java.util.List;
+
 @Repository
 @Slf4j
 public class EmployeeRepoImpl implements EmployeeRepo{
@@ -46,4 +49,34 @@ public class EmployeeRepoImpl implements EmployeeRepo{
         }
         return updateData;
     }
+
+    @Override
+    public List<Employee> getEmployees() {
+        log.info("Inside getEmployees in repository ");
+        List<Employee> employees;
+        try{
+            //String emplyee = mongoTemplate.getCollection(String.valueOf(Employee.class));
+             employees = mongoTemplate.findAll(Employee.class);
+            log.info("FindAll() : {}",employees);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return employees;
+    }
+
+    @Override
+    public List<Employee> getEmpById(String empId) {
+        List<Employee> employee ;
+        try{
+            Query query = new Query();
+            query.addCriteria(Criteria.where("empId").is(empId));
+            //employee = mongoTemplate.find(query, Employee.class);
+            employee = Collections.singletonList(mongoTemplate.findOne(query, Employee.class));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return employee;
+    }
+
+    //Save --> Update --> GetAll --> GetEmployeeByDepartment();
 }
