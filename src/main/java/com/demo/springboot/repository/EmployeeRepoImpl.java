@@ -78,5 +78,27 @@ public class EmployeeRepoImpl implements EmployeeRepo{
         return employee;
     }
 
+    @Override
+    public Object deleteEmployee(Employee employee) {
+        Object response = null;
+        Query query = new Query();
+        try{
+            if (employee.getEmpId() != null){
+                query.addCriteria(Criteria.where("empId").is(employee.getEmpId()));
+            }else if (employee.getEmpName() != null) {
+                query.addCriteria(Criteria.where("empName").is(employee.getEmpName()));
+            } else if (employee.getEmpDepartment() != null) {
+                query.addCriteria(Criteria.where("empDepartment").is(employee.getEmpDepartment()));
+            } else if (employee.getEmpSalary() > 0) {
+                query.addCriteria(Criteria.where("empSalary").is(employee.getEmpSalary()));
+            }
+            log.info("Query : {}", query);
+            response = mongoTemplate.remove(query, Employee.class);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return response;
+    }
+
     //Save --> Update --> GetAll --> GetEmployeeByDepartment();
 }

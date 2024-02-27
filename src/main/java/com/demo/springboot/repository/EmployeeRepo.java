@@ -12,4 +12,6 @@ public interface EmployeeRepo {
     List<Employee> getEmployees();
 
     List<Employee> getEmpById(String empId);
+
+    Object deleteEmployee(Employee employee);
 }
