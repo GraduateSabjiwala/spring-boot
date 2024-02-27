@@ -2,6 +2,7 @@ package com.demo.springboot.controller;
 
 
 import com.demo.springboot.model.Employee;
+import com.demo.springboot.model.Product;
 import com.demo.springboot.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +38,21 @@ public class CrudController {
     public List<Employee> getById(@PathVariable String empId){
         return employeeService.getEmpById(empId);
     }
+
+    @DeleteMapping("/delete-employee")
+    public Object deleteEmployee(@RequestBody Employee employee){
+        return employeeService.deleteEmployee(employee);
+    }
+
+    @GetMapping("/get-all-products")
+    public List<Object> getAllProduct(){
+        return employeeService.getAllProducts();
+    }
     // Save --> Update --> Get --> Delete --> basic
     // External API -> Integrate --> External --> cloud remote --> url --> request format --> response format
-    // Response --> CallBack API -->
+    // Response --> CallBack API --> waitTime
+
+
 
 
 }
