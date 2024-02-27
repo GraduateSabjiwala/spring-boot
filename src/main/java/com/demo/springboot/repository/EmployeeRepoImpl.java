@@ -9,6 +9,8 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Slf4j
 public class EmployeeRepoImpl implements EmployeeRepo{
@@ -46,4 +48,30 @@ public class EmployeeRepoImpl implements EmployeeRepo{
         }
         return updateData;
     }
+
+
+    @Override
+    public List<Employee> getEmployee() {
+        try {
+            return mongoTemplate.findAll(Employee.class);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+    @Override
+    public Object deleteEmployee(String empId) {
+        Object deleteData = new Object();
+        try {
+            Query query = new Query(Criteria.where("empId").is(empId));
+            deleteData = mongoTemplate.remove(query, Employee.class);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return deleteData;
+    }
+
 }

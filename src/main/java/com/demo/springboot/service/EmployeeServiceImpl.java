@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -49,7 +50,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return employee1;
     }
-
     public static String generateEmpId(String name, String boundValue) {
         log.info("Inside generateProductId");
         Random random = new Random();
@@ -58,5 +58,27 @@ public class EmployeeServiceImpl implements EmployeeService {
         String prefix = name.substring(0, Math.min(name.length(), 4)).toUpperCase();
         String randomNumericPart = String.format("%04d", rValue);
         return prefix + randomNumericPart;
+    }
+
+    @Override
+    public List<Employee> getEmployee() {
+        log.info("Inside getEmployee EmployeeServiceimpl");
+        return employeeRepo.getEmployee();
+    }
+
+    @Override
+    public Object deleteEmployee(String empId) {
+        Object employee1 = new Object();
+        try {
+           if (empId != null){
+               employee1= employeeRepo.deleteEmployee(empId);
+           }else {
+               log.error("Null employeeId");
+           }
+        } catch (Exception e) {
+            log.error("Exception occurred while deleting employee with probable cause {} ", e.getMessage());
+            throw new RuntimeException(e);
+        }
+        return employee1;
     }
 }
